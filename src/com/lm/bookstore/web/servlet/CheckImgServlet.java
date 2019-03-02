@@ -12,7 +12,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -79,7 +78,7 @@ public class CheckImgServlet extends HttpServlet {
 
 		Random random = new Random();// 生成随机数
 		int index = random.nextInt(words.size());
-		String word = words.get(index);// 获得成语
+		String word = words.get(index);//根据随机数获得成语
 
 		// 定义x坐标
 		int x = 10;

@@ -59,4 +59,15 @@ public class UserDao {
         String sql = "update user set state = 1 where activeCode =?";
         queryRunner.update(sql, activeCode);
     }
+    /*
+    根据用户名和密码进行登录
+     */
+    public User findUserByUsernameAndPassword(String username, String password) throws SQLException {
+        //1.获取QueryRunner
+        QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
+        //2.sql语句的编写
+        String sql = "select * from user where username = ? and PASSWORD = ?";
+        //运行SQL语句
+        return queryRunner.query(sql, new BeanHandler<User>(User.class), username, password);
+    }
 }

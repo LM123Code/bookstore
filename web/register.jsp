@@ -9,10 +9,10 @@
 <%--导入css --%>
 <link rel="stylesheet" href="css/main.css" type="text/css" />
 <script type="text/javascript">
+	<%--更改验证码的方法--%>
 	function changeImage() {
-
-		document.getElementById("img").src = "${pageContext.request.contextPath}/imageCode?time="
-				+ new Date().getTime();
+		document.getElementById("img").src =
+				"${pageContext.request.contextPath}/imageCode?time=" + new Date().getTime();//get方式src请求后跟时间，避免缓存
 	}
 </script>
 </head>
@@ -127,7 +127,7 @@
 			</tr>
 			<tr>
 				<td style="padding-left:50px"><font color="#CCCCCC"><b>COPYRIGHT
-							2008 &copy; eShop All Rights RESERVED.</b> </font></td>
+							2018 &copy; eShop All Rights RESERVED.</b> </font></td>
 			</tr>
 		</table>
 	</div>

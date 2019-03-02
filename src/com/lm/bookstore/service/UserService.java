@@ -14,6 +14,9 @@ import java.sql.SQLException;
 public class UserService {
     //创建dao
     UserDao userDao = new UserDao();
+    /*
+    添加用户
+     */
     public void register(User user) throws UserException {
         try {
             //往数据库添加用户
@@ -43,6 +46,26 @@ public class UserService {
             userDao.updateState(activeCode);
         } catch (SQLException e) {
             throw new UserException("激活失败");
+        }
+    }
+    /*
+    根据用户名和密码登录
+     */
+    public User login(String username, String password) throws UserException{
+        //1.查询
+        try {
+            User user = userDao.findUserByUsernameAndPassword(username, password);
+            //2.判断
+            if(user == null){
+                throw new UserException("用户名或密码不正确");
+            }
+            if(user.getState() == 0){
+                throw new UserException("用户未激活，请先登录邮箱进行激活");
+            }
+            return user;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new UserException("登录失败");
         }
     }
 }

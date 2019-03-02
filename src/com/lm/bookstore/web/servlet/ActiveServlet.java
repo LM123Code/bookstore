@@ -2,7 +2,6 @@ package com.lm.bookstore.web.servlet;
 
 import com.lm.bookstore.exception.UserException;
 import com.lm.bookstore.service.UserService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * 根据激活码激活用户的servlet
  * @author LM_Code
  * @create 2019-03-02-11:42
  */
@@ -24,10 +24,10 @@ public class ActiveServlet extends HttpServlet {
         UserService us = new UserService();
         try {
             us.activeUser(activeCode);
-            response.getWriter().write("激活成功");
+            response.getWriter().write("激活成功");//将成功结果输出在次页面
         } catch (UserException e) {
             e.printStackTrace();
-            response.getWriter().write(e.getMessage());
+            response.getWriter().write(e.getMessage());//将失败结果输出到此网页
         }
     }
 }
