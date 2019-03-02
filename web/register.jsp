@@ -31,6 +31,7 @@
 						<h1>新会员注册</h1>
 						
 						<table width="70%" border="0" cellspacing="2" class="upline">
+							<tr><td colspan="3" style="color: red; padding-left: 122px">${register_err}</td></tr>
 							<tr>
 								<td style="text-align:right; width:20%">会员邮箱：</td>
 								<td style="width:40%">
@@ -83,7 +84,8 @@
 						<table width="80%" border="0" cellspacing="2" class="upline">
 							<tr>
 								<td style="text-align:right; width:20%">输入校验码：</td>
-								<td style="width:50%"><input type="text" class="textinput" />
+								<td style="width:50%"><input type="text" class="textinput" name="checkcode" />
+									<font color="red">${checkcode_err}</font>
 								</td>
 								<td>&nbsp;</td>
 							</tr>

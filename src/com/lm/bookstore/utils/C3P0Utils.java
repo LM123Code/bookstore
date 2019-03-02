@@ -28,7 +28,6 @@ public class C3P0Utils {
         try {
             return ds.getConnection();//从连接池获取
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             throw new RuntimeException("服务器错误");
         }
     }
@@ -39,7 +38,6 @@ public class C3P0Utils {
             try {
                 resultSet.close();
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             resultSet = null;
@@ -49,7 +47,6 @@ public class C3P0Utils {
             try {
                 statement.close();
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             statement = null;
@@ -59,7 +56,6 @@ public class C3P0Utils {
             try {
                 conn.close();
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
                 conn = null;
             }
