@@ -21,7 +21,6 @@ public class ProductInfoServlet extends HttpServlet {
         ProductService ps = new ProductService();
         Product product = ps.findBook(id);
         request.setAttribute("product", product);
-        System.out.println(product);
         request.getRequestDispatcher("/product_info.jsp").forward(request, response);
     }
 }

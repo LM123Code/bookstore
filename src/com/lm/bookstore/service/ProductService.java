@@ -3,7 +3,6 @@ package com.lm.bookstore.service;
 import com.lm.bookstore.dao.ProductDao;
 import com.lm.bookstore.model.PageResult;
 import com.lm.bookstore.model.Product;
-
 import java.sql.SQLException;
 import java.util.List;
 

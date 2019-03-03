@@ -13,6 +13,8 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * @author LM_Code
  * @create 2019-03-02-7:53
@@ -26,6 +28,10 @@ public class MyEncodingFilter implements Filter{
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
+        //解决响应的乱码
+        HttpServletResponse mResponse = (HttpServletResponse) response;
+        mResponse.setHeader("content-type", "text/html;charset = utf-8");
+        //POST请求解决响应的乱码
         //1.类型转换
         HttpServletRequest hsr = (HttpServletRequest) request;
 
