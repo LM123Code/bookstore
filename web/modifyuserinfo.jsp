@@ -23,7 +23,7 @@
 						<tr>
 							<td class="listtd"><img src="images/miniicon.gif" width="9"
 								height="6" />&nbsp;&nbsp;&nbsp;&nbsp; <a
-								href="modifyuserinfo.jsp">用户信息修改</a></td>
+								href="${pageContext.request.contextPath}/findUserByIdServlet?id=${user.id}">用户信息修改</a></td>
 						</tr>
 
 						<tr>
@@ -51,19 +51,19 @@
 					<table cellspacing="0" class="infocontent">
 						<tr>
 							<td>
-								<form action="modifyUserInfoSuccess.jsp" method="post">
+								<form action="${pageContext.request.contextPath}/modifyUserInfoServlet" method="post">
 									<input type="hidden" name="id" value="${user.id}">
 									<table width="100%" border="0" cellspacing="2" class="upline">
 										<tr>
 											<td style="text-align:right; width:20%">会员邮箱：</td>
-											<td style="width:40%; padding-left:20px">tom@qq.cn</td>
+											<td style="width:40%; padding-left:20px">${modifyuser.email}</td>
 											<td>&nbsp;</td>
 
 
 										</tr>
 										<tr>
 											<td style="text-align:right">会员名：</td>
-											<td style="padding-left:20px">tom</td>
+											<td style="padding-left:20px">${modifyuser.username}</td>
 											<td>&nbsp;</td>
 										</tr>
 										<tr>
@@ -82,15 +82,15 @@
 										</tr>
 										<tr>
 											<td style="text-align:right">性别：</td>
-											<td colspan="2">&nbsp;&nbsp;<input type="radio"
-												name="gender" value="男" checked="checked" /> 男
-												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input
-												type="radio" name="gender" value="女" /> 女</td>
+											<td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;
+												<input type="radio" name="gender" value="男" ${modifyuser.gender == '男' ? 'checked = "checked"': ''}/> 男
+												&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												<input type="radio" name="gender" value="女" ${modifyuser.gender == '女' ? 'checked = "checked"': ''}/> 女</td>
 										</tr>
 										<tr>
 											<td style="text-align:right">联系方式：</td>
 											<td colspan="2"><input name="telephone" type="text"
-												value="13888888888" class="textinput" />
+												value="${modifyuser.telephone}" class="textinput" />
 											</td>
 										</tr>
 
@@ -111,7 +111,8 @@
 
 									</p>
 									<p style="text-align:center">&nbsp;</p>
-								</form></td>
+								</form>
+							</td>
 						</tr>
 					</table>
 				</td>

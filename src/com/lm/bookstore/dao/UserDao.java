@@ -70,4 +70,22 @@ public class UserDao {
         //运行SQL语句
         return queryRunner.query(sql, new BeanHandler<User>(User.class), username, password);
     }
+    /*
+    根据id查找用户
+     */
+    public User findUserById(String id)throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
+        String sql = "select * from user where id = ?";
+        return queryRunner.query(sql, new BeanHandler<User>(User.class), id);
+    }
+    /*
+    更改用户密码、性别、联系方式
+     */
+    public void updateUser(User user) throws SQLException {
+        //1.获取QueryRunner
+        QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
+        //2.sql语句的编写
+        String sql = "update user set PASSWORD = ?, gender = ?, telephone = ? where id =?";
+        queryRunner.update(sql, user.getPassword(), user.getGender(), user.getTelephone(), user.getId());
+    }
 }

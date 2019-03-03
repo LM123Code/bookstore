@@ -26,7 +26,7 @@
 						<tr>
 							<td class="listtd"><img src="images/miniicon.gif" width="9"
 								height="6" />&nbsp;&nbsp;&nbsp;&nbsp; <a
-								href="modifyuserinfo.jsp">用户信息修改</a></td>
+								href="${pageContext.request.contextPath}/findUserByIdServlet?id=${user.id}">用户信息修改</a></td>
 						</tr>
 
 						<tr>
@@ -36,7 +36,7 @@
 						</tr>
 						<tr>
 							<td class="listtd"><img src="images/miniicon.gif" width="9"
-								height="6" />&nbsp;&nbsp;&nbsp;&nbsp; <a href="#">用戶退出</a>
+								height="6" />&nbsp;&nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/logoutServlet">用戶退出</a>
 							</td>
 						</tr>
 					</table></td>

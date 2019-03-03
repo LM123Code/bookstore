@@ -68,4 +68,29 @@ public class UserService {
             throw new UserException("登录失败");
         }
     }
+    /*
+    根据id查找user
+     */
+    public User findUserById(String id) throws UserException{
+        try {
+            User user = userDao.findUserById(id);
+            if(user == null){
+                throw new UserException("用不存在");
+            }
+            return user;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new UserException("未知错误");
+        }
+    }
+    /*
+    更改用户信息
+     */
+    public void modifyUserInfo(User user) throws UserException{
+        try {
+            userDao.updateUser(user);
+        } catch (SQLException e) {
+            throw new UserException("未知错误");
+        }
+    }
 }
