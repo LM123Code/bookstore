@@ -29,152 +29,50 @@
 							<td>
 								<h1>商品目录</h1>
 								<hr />
-								<h1>计算机</h1>&nbsp;&nbsp;&nbsp;&nbsp;共100种商品
+								<h1>计算机</h1>&nbsp;&nbsp;&nbsp;&nbsp;共${pageResult.totalCount}种商品
 								<hr />
 								<div style="margin-top:20px; margin-bottom:5px">
 									<img src="images/productlist.gif" width="100%" height="38" />
 								</div>
 								<table cellspacing="0" class="booklist">
 									<tr>
-										<td>
+										<c:forEach items="${pageResult.list}" var="product">
+											<td style="width: 25%">
+												<div class="divbookpic">
+													<p>
+														<a href="product_info.jsp"><img src="bookcover/101.jpg" width="115"
+															height="129" border="0" /> </a>
+													</p>
+												</div>
 
-											<div class="divbookpic">
-												<p>
-													<a href="product_info.jsp"><img src="bookcover/101.jpg" width="115"
-														height="129" border="0" /> </a>
-												</p>
-											</div>
-
-											<div class="divlisttitle">
-												<a href="product_info.jsp">书名:xxx<br />售价:xxx </a>
-											</div></td>
-										<td>
-
-											<div class="divbookpic">
-												<p>
-													<a href="product_info.jsp"><img src="bookcover/102.jpg" width="115"
-														height="129" border="0" /> </a>
-												</p>
-											</div>
-
-											<div class="divlisttitle">
-												<a href="product_info.jsp">书名:xxx<br />售价:xxx </a>
-											</div></td>
-										<td>
-
-											<div class="divbookpic">
-												<p>
-													<a href="product_info.jsp"><img src="bookcover/103.jpg" width="115"
-														height="129" border="0" /> </a>
-												</p>
-											</div>
-
-											<div class="divlisttitle">
-												<a href="product_info.jsp">书名:xxx<br />售价:xxx </a>
-											</div></td>
-										<td>
-
-											<div class="divbookpic">
-												<p>
-													<a href="product_info.jsp"><img src="bookcover/104.jpg" width="115"
-														height="129" border="0" /> </a>
-												</p>
-											</div>
-
-											<div class="divlisttitle">
-												<a href="product_info.jsp">书名:xxx<br />售价:xxx </a>
-											</div></td>
-
+												<div class="divlisttitle">
+													<a href="product_info.jsp">书名:${product.name}<br />售价:${product.price} </a>
+												</div>
+											</td>
+										</c:forEach>
 
 									</tr>
 								</table>
-
-								<table cellspacing="0" class="booklist">
-									<tr>
-										<td>
-
-											<div class="divbookpic">
-												<p>
-													<a href="product_info.jsp"><img src="bookcover/101.jpg" width="115"
-														height="129" border="0" /> </a>
-												</p>
-											</div>
-
-											<div class="divlisttitle">
-												<a href="product_info.jsp">书名:xxx<br />售价:xxx </a>
-											</div></td>
-										<td>
-
-											<div class="divbookpic">
-												<p>
-													<a href="product_info.jsp"><img src="bookcover/102.jpg" width="115"
-														height="129" border="0" /> </a>
-												</p>
-											</div>
-
-											<div class="divlisttitle">
-												<a href="product_info.jsp">书名:xxx<br />售价:xxx </a>
-											</div></td>
-										<td>
-
-											<div class="divbookpic">
-												<p>
-													<a href="product_info.jsp"><img src="bookcover/103.jpg" width="115"
-														height="129" border="0" /> </a>
-												</p>
-											</div>
-
-											<div class="divlisttitle">
-												<a href="product_info.jsp">书名:xxx<br />售价:xxx </a>
-											</div></td>
-										<td>
-
-											<div class="divbookpic">
-												<p>
-													<a href="product_info.jsp"><img src="bookcover/104.jpg" width="115"
-														height="129" border="0" /> </a>
-												</p>
-											</div>
-
-											<div class="divlisttitle">
-												<a href="product_info.jsp">书名:xxx<br />售价:xxx </a>
-											</div></td>
-
-
-									</tr>
-								</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 								<div class="pagination">
+									第${pageResult.currentPage}页/共${pageResult.totalPage}页
 									<ul>
-
-
-										<li class="disablepage">上一页 &lt;&lt;</li>
-										<li class="currentpage">1</li>
-										<li><a href="product_info.jsp">2</a>
-										</li>
-										<li><a href="product_info.jsp">3</a>
-										</li>
-										<li><a href="product_info.jsp">4</a>
-										</li>
-
-
-										<li class="nextpage"><a href="product_info.jsp">下一页&gt;&gt;</a>
-										</li>
-
+										<c:if test="${pageResult.currentPage == 1}">
+											<li class="disablepage">上一页 &lt;&lt;</li>
+										</c:if>
+										<c:if test="${pageResult.currentPage > 1}">
+											<li><a href="${pageContext.request.contextPath}/showProductByPageServlet?category=${category}&page=${pageResult.currentPage-1}">上一页 &lt;&lt;</a></li>
+										</c:if>
+										<%--<li class="currentpage">1</li>--%>
+										<%--显示分页--%>
+										<c:forEach begin="1" end="${pageResult.totalPage}" var="i">
+											<li><a href="${pageContext.request.contextPath}/showProductByPageServlet?category=${category}&page=${i}">${i}</a></li>
+										</c:forEach>
+										<c:if test="${pageResult.currentPage == pageResult.totalPage}">
+											<li class="disablepage">下一页&gt;&gt;</li>
+										</c:if>
+										<c:if test="${pageResult.currentPage < pageResult.totalPage}">
+											<li><a href="${pageContext.request.contextPath}/showProductByPageServlet?category=${category}&page=${pageResult.currentPage+1}">下一页 &lt;&lt;</a></li>
+										</c:if>
 									</ul>
 								</div>
 							</td>

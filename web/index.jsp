@@ -52,11 +52,11 @@
 					</table>
 					<table width="100%" border="0" cellspacing="0">
 						<tr>
-							<td style="width:50; text-align:center"><a href="info.html"><img
+							<td style="width: 50px; text-align:center"><a href="info.html"><img
 									src="bookcover/travelbook.jpg" width="102" height="130"
 									border="0" /> </a><br /> <a href="info.html">TravelBook<br />
 									作者:Lonley Plant</a></td>
-							<td style="width:50; text-align:center"><a href="info.html"><img
+							<td style="width: 50px; text-align:center"><a href="info.html"><img
 									src="bookcover/java2.jpg" width="102" height="130" border="0" />
 							</a><br /> <a href="info.html">Java2入门经典(JDK5) <br /> 作者:(美)霍顿</a>
 							</td>
