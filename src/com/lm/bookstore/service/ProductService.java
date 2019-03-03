@@ -30,4 +30,18 @@ public class ProductService {
             return null;
         }
     }
+
+    /**
+     * 根据id查找商品
+     * @param id
+     * @return
+     */
+    public Product findBook(String id){
+        try {
+            return productDao.findBook(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

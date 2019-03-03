@@ -3,6 +3,7 @@ package com.lm.bookstore.dao;
 import com.lm.bookstore.model.Product;
 import com.lm.bookstore.utils.C3P0Utils;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
@@ -52,5 +53,15 @@ public class ProductDao {
         prams.add(start);//加入参数
         prams.add(length);//加入参数
         return queryRunner.query(sql, new BeanListHandler<Product>(Product.class), prams.toArray());
+    }
+
+    /**
+     * 根据id查找上商品
+     * @param id
+     * @return
+     */
+    public Product findBook(String id) throws SQLException {
+        QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
+        return queryRunner.query("select * from products where id = ?", new BeanHandler<Product>(Product.class), id);
     }
 }
