@@ -109,7 +109,7 @@
 													src="images/gwc_jx.gif" border="0" /> </a>
 
 												&nbsp;&nbsp;&nbsp;&nbsp;<a
-													href="order.jsp"><img
+													href="${pageContext.request.contextPath}/settleAccountServlet"><img
 													src="images/gwc_buy.gif" border="0" /> </a>
 											</div>
 										</td>

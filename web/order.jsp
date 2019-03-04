@@ -31,7 +31,7 @@
 								<td><table width="100%" border="0" cellspacing="0">
 										<tr>
 											<td><img src="images/buy2.gif" width="635" height="38" />
-												<p>您好：xxx先生！欢迎您来到商城结算中心</p></td>
+												<p>您好：${user.username}先生！欢迎您来到商城结算中心</p></td>
 										</tr>
 										<tr>
 											<td><table cellspacing="1" class="carttable">
@@ -47,23 +47,23 @@
 												</table>
 
 												<table width="100%" border="0" cellspacing="0">
-													<tr>
-														<td width="10%">1</td>
-														<td width="40%">Thinking In Java</td>
-														<td width="10%">100</td>
-														<td width="10%">计算机</td>
-														<td width="10%"><input name="text" type="text"
-															value="10" style="width:20px" readonly="readonly" /></td>
-														<td width="10%">1000</td>
-
-													</tr>
+													<c:set var="totalPrice" value="0"></c:set>
+													<c:forEach items="${cart}" var="entry" varStatus="vs">
+														<tr>
+															<td width="10%">${vs.count}</td>
+															<td width="40%">${entry.key.name}</td>
+															<td width="10%">${entry.key.price}</td>
+															<td width="10%">${entry.key.category}</td></td>
+															<td width="10%"><input name="text" type="text" value="${entry.value}" style="width:20px" readonly="readonly" /></td>
+															<td width="10%">${entry.key.price*entry.value}</td>
+														</tr>
+														<c:set var="totalPrice" value="${totalPrice + entry.key.price*entry.value}"></c:set>
+													</c:forEach>
 												</table>
-
-
 												<table cellspacing="1" class="carttable">
 													<tr>
 														<td style="text-align:right; padding-right:40px;"><font
-															style="color:#FF0000">合计：&nbsp;&nbsp;1000元</font></td>
+															style="color:#FF0000">合计：&nbsp;&nbsp;${totalPrice}元</font></td>
 													</tr>
 												</table>
 
