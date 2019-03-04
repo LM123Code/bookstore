@@ -1,12 +1,13 @@
 package com.lm.bookstore.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * @author LM_Code
  * @create 2019-03-03-10:41
  */
-public class Product {
+public class Product implements Serializable {
     private int id;
     private String name;//书名
     private double price;//价格

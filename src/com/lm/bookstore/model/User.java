@@ -1,12 +1,13 @@
 package com.lm.bookstore.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author LM_Code
  * @create 2019-03-01-19:51
  */
-public class User {
+public class User implements Serializable {
     private int id;//用户编号
     private String username;//用户姓名
     private String password;//用户密码
