@@ -5,7 +5,29 @@
 <head>
 <title>电子书城</title>
 <link rel="stylesheet" href="css/main.css" type="text/css" />
-
+<script type="text/javascript">
+	/**
+	 *
+	 * @param id 商品的id
+	 * @param num  更改后的数量
+	 * @param pnum  库存
+	 */
+	function changeNum(id,num,pnum) {
+		if(num>pnum){
+			//购买数量不能大于库存
+			alert('购买的数量不能大于库存');
+			return;
+		}
+		if(num==0){
+			var b = confirm('您确定把这件商品从购物车移除吗？');
+			if(b==false){
+				return;
+			}
+		}
+		//如果可以加减
+		location.href = "${pageContext.request.contextPath}/changeNumServlet?id=" + id + "&num=" + num;
+	}
+</script>
 
 </head>
 
@@ -48,17 +70,18 @@
 												<table width="100%" border="0" cellspacing="0">
 													<%--定义一个总价格的计数器--%>
 													<c:set var = "totalPrice" value="0"></c:set>
-													<c:forEach items="${cart}" var="entry">
+														<%--var用来存foreach每次的元素，varStatus代表循环的状态--%>
+													<c:forEach items="${cart}" var="entry" varStatus="vs">
 														<tr>
-															<td width="10%">1</td>
+															<%--用状态vs取出循环次数--%>
+															<td width="10%">${vs.count}</td>
 															<td width="30%">${entry.key.name}</td>
 
 															<td width="10%">${entry.key.price}</td>
 															<td width="20%">
-																<input type="button" value='-' style="width:20px">
-
+																<input type="button" value='-' style="width:20px" onclick="changeNum(${entry.key.id},${entry.value-1},${entry.key.pnum})">
 																<input name="text" type="text"  value=${entry.value} style="width:40px;text-align:center" />
-																<input type="button" value='+' style="width:20px">
+																<input type="button" value='+' style="width:20px" onclick="changeNum(${entry.key.id},${entry.value+1},${entry.key.pnum})">
 
 															</td>
 															<td width="10%">${entry.key.pnum}</td>

@@ -38,19 +38,19 @@
 									<tr>
 										<c:forEach items="${pageResult.list}" var="product">
 											<td style="width: 25%">
-												<div class="divbookpic">
-													<p>
-														<a href="${pageContext.request.contextPath}/productInfoServlet?id=${product.id}"><img src="${pageContext.request.contextPath}${product.imgurl}" width="115"
-															height="129" border="0" /> </a>
-													</p>
-												</div>
-
-												<div class="divlisttitle">
-													<a href="${pageContext.request.contextPath}/productInfoServlet?id=${product.id}">书名:${product.name}<br />售价:${product.price} </a>
-												</div>
+												<c:if test="${product != null}">
+													<div class="divbookpic">
+														<p>
+															<a href="${pageContext.request.contextPath}/productInfoServlet?id=${product.id}"><img src="${pageContext.request.contextPath}${product.imgurl}" width="115"
+																height="129" border="0" /> </a>
+														</p>
+													</div>
+													<div class="divlisttitle">
+														<a href="${pageContext.request.contextPath}/productInfoServlet?id=${product.id}">书名:${product.name}<br />售价:${product.price} </a>
+													</div>
+												</c:if>
 											</td>
 										</c:forEach>
-
 									</tr>
 								</table>
 								<div class="pagination">
@@ -81,11 +81,6 @@
 			</tr>
 		</table>
 	</div>
-
-
-
 	<jsp:include page="foot.jsp" />
-
-
 </body>
 </html>

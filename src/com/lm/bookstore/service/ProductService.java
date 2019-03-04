@@ -12,6 +12,13 @@ import java.util.List;
  */
 public class ProductService {
     ProductDao productDao = new ProductDao();
+
+    /**
+     * 获取一页商品
+     * @param category
+     * @param page
+     * @return
+     */
     public PageResult<Product> findBook(String category, int page){
         try {
             PageResult<Product> pr = new PageResult<>();//创建模型，存储查询结果
@@ -22,6 +29,9 @@ public class ProductService {
             pr.setCurrentPage(page);//设置当前页码
             //查询某一类别、某一页的内容
             List<Product> list = productDao.findBooks(category, page, pr.getPageSize());
+            while(list.size() < 4){
+                list.add(null);
+            }
             pr.setList(list);
             return pr;
         } catch (SQLException e) {
