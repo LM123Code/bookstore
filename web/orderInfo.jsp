@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
@@ -28,7 +29,7 @@
 								<table width="100%" border="0" cellspacing="0">
 									<tr>
 										<td>
-											<p>订单编号:001</p></td>
+											<p>订单编号:${order.id}</p></td>
 									</tr>
 									<tr>
 										<td>
@@ -42,38 +43,30 @@
 
 												</tr>
 											</table>
-											<table width="100%" border="0" cellspacing="0">
-												<tr>
-													<td width="10%">1</td>
-													<td width="40%">Thinking In Java</td>
-													<td width="10%">100</td>
-													<td width="10%">10</td>
-													<td width="10%">1000</td>
-
-												</tr>
-											</table>
-											<table width="100%" border="0" cellspacing="0">
-												<tr>
-													<td width="10%">2</td>
-													<td width="40%">Thinking In Java</td>
-													<td width="10%">100</td>
-													<td width="10%">10</td>
-													<td width="10%">1000</td>
-
-												</tr>
-											</table>
-
+											<c:set var="total" value="0"></c:set>
+											<c:forEach items="${order.items}" var="item" varStatus="vs">
+												<table width="100%" border="0" cellspacing="0">
+													<tr>
+														<td width="10%">${vs.count}</td>
+														<td width="40%">${item.product.name}</td>
+														<td width="10%">${item.product.price}</td>
+														<td width="10%">${item.buyNum}</td>
+														<td width="10%">${item.product.price*item.buyNum}</td>
+														<c:set var="total" value="${item.product.price*item.buyNum + total}"></c:set>
+													</tr>
+												</table>
+											</c:forEach>
 											<table cellspacing="1" class="carttable">
 												<tr>
 													<td style="text-align:right; padding-right:40px;"><font
-														style="color:#FF0000">合计：&nbsp;&nbsp;1000</font></td>
+														style="color:#FF0000">合计：&nbsp;&nbsp;${total}</font></td>
 												</tr>
 											</table>
 
 											<p>
-												收货地址：xxxx&nbsp;&nbsp;&nbsp;&nbsp;<br />
-												收货人：&nbsp;&nbsp;&nbsp;&nbsp;tom&nbsp;&nbsp;&nbsp;&nbsp;<br />
-												联系方式：13888888888&nbsp;&nbsp;&nbsp;&nbsp;
+												收货地址：${order.receiverAddress}&nbsp;&nbsp;&nbsp;&nbsp;<br />
+												收货人：&nbsp;&nbsp;&nbsp;&nbsp;${order.receiverName}&nbsp;&nbsp;&nbsp;&nbsp;<br />
+												联系方式：${order.receiverPhone}&nbsp;&nbsp;&nbsp;&nbsp;
 
 											</p>
 											<hr>

@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Order {
     private String id;
-    private  double money;
+    private double money;
     private String receiverAddress;//收件人地址
     private String receiverName;//收件人姓名
     private String receiverPhone;//收件人电话

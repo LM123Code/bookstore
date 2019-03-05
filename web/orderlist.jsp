@@ -1,4 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page import="javax.servlet.descriptor.TaglibDescriptor" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -27,7 +30,7 @@
 
 						<tr>
 							<td class="listtd"><img src="images/miniicon.gif" width="9"
-								height="6" />&nbsp;&nbsp;&nbsp;&nbsp; <a href="orderlist.jsp">订单查询</a>
+								height="6" />&nbsp;&nbsp;&nbsp;&nbsp; <a href="${pageContext.request.contextPath}/findOrderByIdServlet">订单查询</a>
 							</td>
 						</tr>
 						<tr>
@@ -63,9 +66,9 @@
 
 					<table cellspacing="0" class="infocontent">
 						<tr>
-							<td style="padding:20px"><p>欢迎xxx光临商城！</p>
+							<td style="padding:20px"><p>欢迎&nbsp;${user.username}&nbsp;光临商城！</p>
 								<p>
-									您有<font style="color:#FF0000">xx</font>个订单
+									您有<font style="color:#FF0000">${orders.size()}</font>个订单
 								</p>
 								<table width="100%" border="0" cellspacing="0" class="tableopen">
 									<tr>
@@ -75,30 +78,23 @@
 										<td bgcolor="#A3B6E6" class="tableopentd01">状态</td>
 										<td bgcolor="#A3E2E6" class="tableopentd01">操作</td>
 									</tr>
-
-
-
+									<c:forEach items="${orders}" var="order">
 									<tr>
-										<td class="tableopentd02">001</td>
+										<td class="tableopentd02">${order.id}</td>
 
-										<td class="tableopentd02">tom</td>
-										<td class="tableopentd02">2012-10-10</td>
-										<td class="tableopentd02">未支付</td>
-										<td class="tableopentd03"><a href="orderInfo.jsp">查看</a>&nbsp;&nbsp;
+										<td class="tableopentd02">${order.receiverName}</td>
+										<%--掌握如何在jsp格式化时间--%>
+										<td class="tableopentd02">
+											<fmt:formatDate value="${order.orderTime}" pattern="yyyy-MM-dd-hh-mm-ss"></fmt:formatDate>
+										</td>
+										<td class="tableopentd02">${order.payState==0?'未支付':'已支付'}</td>
+										<td class="tableopentd03"><a href="${pageContext.request.contextPath}/findOrderByOrderIdServlet?orderId=${order.id}">查看</a>&nbsp;&nbsp;
 											<a href="#">刪除</a>
 										</td>
 									</tr>
+									</c:forEach>
 									
-									<tr>
-										<td class="tableopentd02">002</td>
 
-										<td class="tableopentd02">张三</td>
-										<td class="tableopentd02">2014-10-10</td>
-										<td class="tableopentd02">已支付</td>
-										<td class="tableopentd03"><a href="orderInfo.jsp">查看</a>&nbsp;&nbsp;
-											<a href="#">刪除</a>
-										</td>
-									</tr>
 								</table>
 							</td>
 						</tr>

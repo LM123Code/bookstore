@@ -2,6 +2,7 @@ package com.lm.bookstore.dao;
 
 import com.lm.bookstore.model.Product;
 import com.lm.bookstore.utils.C3P0Utils;
+import com.lm.bookstore.utils.ManagerThreadLocal;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -63,5 +64,17 @@ public class ProductDao {
     public Product findBook(String id) throws SQLException {
         QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
         return queryRunner.query("select * from products where id = ?", new BeanHandler<Product>(Product.class), id);
+    }
+
+    /**
+     * 更新库存
+     */
+    public void updateNum(int product_id, int num) throws SQLException {
+        String sql = "update products set pnum = pnum - ? where id = ?";
+        /*QueryRunner queryRunner = new QueryRunner(C3P0Utils.getDataSource());
+        queryRunner.update(sql, num, product_id);*/
+        //事务优化
+        QueryRunner queryRunner = new QueryRunner();
+        queryRunner.update(ManagerThreadLocal.getConnection(), sql, num, product_id);
     }
 }

@@ -65,8 +65,10 @@ public class CreateOrderServlet extends HttpServlet {
             //插入数据库
             OrderService orderService = new OrderService();
             orderService.createOrder(order);
-            //移除购物车数据
+            //订单成功移除购物车数据
             request.getSession().removeAttribute("cart");
+            //响应
+            response.getWriter().write("下单成功");
         } catch (Exception e) {
             e.printStackTrace();
         }
